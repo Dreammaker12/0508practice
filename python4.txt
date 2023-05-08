@@ -1,0 +1,23 @@
+weight, height = [70,80,65],[170,180,170]
+n_people = len(weight)
+#무게의합, 무게의 제곱합 키의합, 키의 제곱합 초기화
+weight_sum, height_sum = 0, 0
+weight_square_sum,height_square_sum = 0, 0
+#무게의합, 제곱합 #키의 합, 제곱합 
+for people_idx in range(n_people):
+    weight_sum += weight[people_idx]
+    weight_square_sum += weight[people_idx]**2
+    height_sum += height[people_idx]
+    height_square_sum += height[people_idx]**2
+#키의 평균, 몸무게 평균    
+weight_mean = weight_sum/n_people
+height_mean = height_sum/n_people
+#키의 분산, 몸무게 분산
+weight_variance = weight_square_sum/n_people-weight_mean**2
+height_variance = height_square_sum/n_people-height_mean**2
+#키의 표준편차, 몸무게 표준편차
+weight_std = weight_variance**0.5
+height_std = height_variance**0.5
+#각각의 평균, 표준편차 출력 
+print("mean/std of weight",weight_mean,"/",weight_std)
+print("mean/std of height",height_mean,"/",height_std)
