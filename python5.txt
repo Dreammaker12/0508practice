@@ -1,0 +1,71 @@
+weight, height = [80,75,90],[172,182,175]
+n_people = len(weight)
+#무게의합, 무게의 제곱합 키의합, 키의 제곱합 초기화
+weight_sum, height_sum = 0, 0
+weight_square_sum,height_square_sum = 0, 0
+#무게의합, 제곱합 #키의 합, 제곱합 
+for people_idx in range(n_people):
+    weight_sum += weight[people_idx]
+    weight_square_sum += weight[people_idx]**2
+    height_sum += height[people_idx]
+    height_square_sum += height[people_idx]**2
+#키의 평균, 몸무게 평균    
+weight_mean = weight_sum/n_people
+height_mean = height_sum/n_people
+#키의 분산, 몸무게 분산
+weight_variance = weight_square_sum/n_people-weight_mean**2
+height_variance = height_square_sum/n_people-height_mean**2
+#키의 표준편차, 몸무게 표준편차
+weight_std = weight_variance**0.5
+height_std = height_variance**0.5
+#각각의 평균, 표준편차 출력 
+print("mean/std of weight",weight_mean,"/",weight_std)
+print("mean/std of height",height_mean,"/",height_std)
+#결과값
+mean/std of weight 81.66666666666667 / 6.236095644623147
+mean/std of height 176.33333333333334 / 4.189935029991648
+
+#이전 코드와 다르게 list로 받아서 계산 표준화 
+weight, height = [80,75,90],[172,182,175]
+n_student = len(weight)
+n_class = 2
+#
+for student_idx in range(n_student):
+    weight_num = weight[student_idx]
+    height_num = height[student_idx]
+    
+    weight[student_idx] = (weight_num-weight_mean)/weight_std
+    height[student_idx] = (height_num-height_mean)/height_std
+#리스트를 활용한 계산   
+total_sum = list()
+total_square_sum = list()
+#0으로 초기화
+for student_num in range(n_class):
+    total_sum.append(0)
+    total_square_sum.append(0)
+#합과 제곱의 합 구하기    
+for student_id in range(n_student):
+    total_sum[0] += weight[student_id]
+    total_sum[1] += height[student_id]
+    total_square_sum[0] += weight[student_id]**2
+    total_square_sum[1] += height[student_id]**2
+total_avg = list()
+#평균 구하기
+for student_id in range(n_class):
+    class_avg = total_sum[student_id]/n_student
+    total_avg.append(class_avg)
+#분산 구하기
+total_val = list()
+for student_val in range(n_class):
+    class_val = total_square_sum[student_val]/n_student-total_avg[student_val]**2
+    total_val.append(class_val)
+total_std = list()
+#표준편차 구하기 
+for student_std in range(n_class):
+    class_std = total_val[student_std]**0.5
+    total_std.append(class_std)
+print("total_avg:",total_avg)
+print("total_std:",total_std)
+#결과값
+total_avg: [-7.401486830834377e-16, -2.238949766327399e-15]
+total_std: [1.0000000000000142, 1.0000000000001266]
