@@ -1,0 +1,39 @@
+scores = [10,20,30,20, 50, 10, 50, 20]
+n_student = len(scores)
+score_sum,square_of_sum = 0,0
+#합게, 제곱의 합 계산
+for score in scores:
+    score_sum += score
+    square_of_sum += score**2
+#평균, 제곱의 평균, 평균의 제곱 계산    
+mean = score_sum/n_student
+mean_of_square = square_of_sum/n_student
+square_of_mean = mean**2
+#분산, 표준편차계산
+variance = mean_of_square - square_of_mean
+std = variance*0.5
+#표준화 후 평균, 분산, 표준편차 출력
+print("mean before standardeization:", mean)
+print("variance before standardization",variance)
+print("standard deviation before standardization",std)
+
+#표준화
+for student_idx in range(n_student):
+    scores[student_idx] = (scores[student_idx]-mean)/n_student
+
+#합계, 제곱의 합 계산
+score_sum, square_of_sum = 0, 0
+for score in scores:
+    score_sum += score
+    sqaure_of_sum += score
+#평균, 제곱의 평균, 평균의 제곱 계산
+mean = score_sum/n_student
+mean_of_square = square_of_sum/n_student
+square_of_mean = mean**2
+#분산, 표준편차계산
+variance = mean_of_square - square_of_mean
+std = variance**0.5
+#표준화 후 평균, 분산, 표준편차 출력
+print("mean after standardeization:", mean)
+print("variance after standardization",variance)
+print("standard deviation after standardization",std)
