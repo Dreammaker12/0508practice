@@ -1,0 +1,38 @@
+deeplearning_scores = [100,80,90]
+programming_scores = [80,80,80]
+
+n_class = 2
+n_student = len(deeplearning_scores)
+
+score_sums = list()
+score_avg = list()
+
+for _ in range(n_class):
+    score_sums.append(0)
+
+for student_num in range(n_student):
+    score_sums[0] += deeplearning_scores[student_num]
+    score_sums[1] += programming_scores[student_num]
+print("sums of scores: ", score_sums)
+for class_num in range(n_class):
+    class_means = score_sums[class_num] /n_student
+    score_avg.append(class_means)
+print("means of scores: ", score_avg)
+#mean substraction 후
+for student_idx in range(n_student):
+    deeplearning_scores[student_idx] -= score_avg[0]
+    programming_scores[student_idx] -= score_avg[1]
+
+score_sums = list()
+for _ in range(n_class):
+    score_sums.append(0)
+
+for student_num in range(n_student):
+    score_sums[0] += deeplearning_scores[student_num]
+    score_sums[1] += programming_scores[student_num]
+print("sums of scores: ", score_sums)
+score_avg = list()
+for class_idx in range(n_class):
+    class_mean = score_sums[class_idx]/n_student
+    score_avg.append(class_mean)
+print("avg of scores: ",score_avg)
